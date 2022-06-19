@@ -1,0 +1,21 @@
+/users:
+  get:
+    tags:
+      - tests
+    summary: Get all users.
+    description: 全ユーザを返す
+    parameters: []
+    responses:
+      '200':
+        description: A JSON array of User model
+        content:
+          application/json:
+            schema: 
+              type: array
+              items:
+                $ref: '../components/schemas/User.yaml'
+              example:
+                - id: 1
+                  name: gangan
+                - id: 2
+                  name: gangang 
