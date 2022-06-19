@@ -20,3 +20,12 @@ $ docker-compose up -d doc
 
 ### GitHub Pagesでの確認
 TBD
+
+## Environment / Architecture
+* Kotlin
+* Spring Boot
+* Spring Data JPA
+* オニオンアーキテクチャ
+
+## Infrastructure
+* TBD
