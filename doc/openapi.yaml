@@ -1,0 +1,16 @@
+openapi: 3.0.0
+info:
+  title: Sample API
+  description: >-
+    これはサンプルです
+  version: 0.0.1
+servers:
+  - url: https://example.com
+    description: テストURL
+paths:
+  /items:
+    $ref: "./paths/items.yaml"
+components:
+  schemas:
+    items:
+      $ref: "./components/schemas/User.yaml"
