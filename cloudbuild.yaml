@@ -1,0 +1,21 @@
+steps:
+  # Docker Build
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', '${_IMAGE_NAME}', '.' ]
+  # Docker push to Artifact Resistry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'push', '${_IMAGE_NAME}' ]
+  # Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    entrypoint: gcloud
+    args: [ 'run', 'deploy', 'inference-engine',
+            '--image=${_IMAGE_NAME}',
+            '--region', 'asia-northeast1',
+            '--platform', 'managed',
+            '--allow-unauthenticated' ]
+
+substitutions:
+  _IMAGE_NAME: asia-northeast1-docker.pkg.dev/${PROJECT_ID}/${TRIGGER_NAME}/web-backend:${SHORT_SHA}
+
+images:
+- '${_IMAGE_NAME}'
