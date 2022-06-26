@@ -1,6 +1,7 @@
 version: '3.9'
 
 services:
+  # API Doc
   doc:
     image: swaggerapi/swagger-ui:v4.12.0
     container_name: api-document
@@ -24,6 +25,19 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./db:/docker-entrypoint-initdb.d
+  # Web Backend
+  app:
+    build:
+      context: ./demo
+    container_name: web_backend
+    tty: true
+    ports:
+      - 8080:8080
+    volumes:
+      - ./demo:/app
+    working_dir: /app
+    depends_on:
+      - db
 
 volumes:
   db_data:
