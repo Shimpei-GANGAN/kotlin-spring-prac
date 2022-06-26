@@ -10,3 +10,16 @@ services:
       - ./doc/openapi.yaml:/openapi.yaml
     environment:
       SWAGGER_JSON: /openapi.yaml
+  # DB
+  db:
+    build:
+      context: ./db
+    container_name: db
+    environment:
+      POSTGRES_DB: "dev"
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
